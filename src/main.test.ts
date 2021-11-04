@@ -1,9 +1,8 @@
-import { greet } from './main'
+import { Pitch } from './pitch'
 
-test('the data is peanut butter', () => {
-  expect(1).toBe(1)
-});
-
-test('greeting', () => {
-  expect(greet('Foo')).toBe('Hello Foo')
-});
+test('pitch creation', () => {
+  const pitch = new Pitch('C', 4)
+  expect(pitch.tune).toBe('C')
+  expect(pitch.octave).toBe(4)
+  expect(pitch.toString()).toBe('C4')
+})
