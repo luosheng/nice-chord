@@ -17,11 +17,21 @@ const DISTANCE = {
 }
 
 export class Pitch {
+
+  private static standard: Pitch
+
   constructor(
     public readonly tune: Tune,
     public readonly octave: Octave,
     public readonly accidental = Accidental.None
   ) { }
+
+  static get Standard(): Pitch {
+    if (!Pitch.standard) {
+      Pitch.standard = new Pitch('A', 4)
+    }
+    return Pitch.standard
+  }
 
   static fromString(str: string): Pitch {
     const [tune, octave] = str.split('')

@@ -26,3 +26,7 @@ test('pitch distance', () => {
   const pitch2 = Pitch.fromString('C5')
   expect(pitch2.distanceFrom(pitch1)).toBe(3)
 })
+
+test('pitch standard', () => {
+  expect(Pitch.Standard.toString()).toBe('A4')
+})
