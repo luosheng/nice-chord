@@ -20,3 +20,9 @@ test('pitch decomposition', () => {
   expect(pitch.tune).toBe('C')
   expect(pitch.octave).toBe(4)
 })
+
+test('pitch distance', () => {
+  const pitch1 = Pitch.fromString('A4')
+  const pitch2 = Pitch.fromString('C5')
+  expect(pitch2.distanceFrom(pitch1)).toBe(3)
+})

@@ -6,6 +6,16 @@ export enum Accidental {
   Flat = '♭',
 }
 
+const DISTANCE = {
+  'C': 0,
+  'D': 2,
+  'E': 4,
+  'F': 5,
+  'G': 7,
+  'A': 9,
+  'B': 11,
+}
+
 export class Pitch {
   constructor(
     public readonly tune: Tune,
@@ -16,6 +26,27 @@ export class Pitch {
   static fromString(str: string): Pitch {
     const [tune, octave] = str.split('')
     return new Pitch(tune as Tune, parseInt(octave))
+  }
+
+  protected getIndex(): number {
+    const i = DISTANCE[this.tune]
+    let offset: number
+    switch (this.accidental) {
+      case Accidental.Sharp:
+        offset = 1
+        break
+      case Accidental.Flat:
+        offset = -1
+        break
+      default:
+        offset = 0
+        break
+    }
+    return i + offset + 12 * (this.octave - 1)
+  }
+
+  distanceFrom(pitch: Pitch): number {
+    return this.getIndex() - pitch.getIndex()
   }
 
   toString(): string {
