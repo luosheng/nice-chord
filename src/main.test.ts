@@ -6,3 +6,9 @@ test('pitch creation', () => {
   expect(pitch.octave).toBe(4)
   expect(pitch.toString()).toBe('C4')
 })
+
+test('pitch decomposition', () => {
+  const pitch = Pitch.fromString('C4')
+  expect(pitch.tune).toBe('C')
+  expect(pitch.octave).toBe(4)
+})
