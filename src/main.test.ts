@@ -30,3 +30,10 @@ test('pitch distance', () => {
 test('pitch standard', () => {
   expect(Pitch.Standard.toString()).toBe('A4')
 })
+
+test('pitch frequency', () => {
+  expect(Pitch.Standard.frequency).toBe(440)
+  expect(Pitch.fromString('C4').frequency).toBeCloseTo(261.6255653005986)
+  expect(new Pitch('C', 4, Accidental.Sharp).frequency).toBeCloseTo(277.18263097687225)
+  expect(Pitch.fromString('C5').frequency).toBeCloseTo(523.2511306011972)
+})

@@ -16,6 +16,7 @@ const DISTANCE = {
   'B': 11,
 }
 
+const STANDARD_FREQUENCY = 440
 export class Pitch {
 
   private static standard: Pitch
@@ -57,6 +58,10 @@ export class Pitch {
 
   distanceFrom(pitch: Pitch): number {
     return this.getIndex() - pitch.getIndex()
+  }
+
+  get frequency(): number {
+    return STANDARD_FREQUENCY * Math.pow(2, this.distanceFrom(Pitch.Standard) / 12)
   }
 
   toString(): string {
