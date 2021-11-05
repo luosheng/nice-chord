@@ -16,6 +16,8 @@ const DISTANCE = {
   'B': 11,
 }
 
+const PITCH_PATTERN = /^([A-G])([#♯b♭]?)(\d)$/
+
 const STANDARD_FREQUENCY = 440
 export class Pitch {
 
@@ -35,8 +37,17 @@ export class Pitch {
   }
 
   static fromString(str: string): Pitch {
-    const [tune, octave] = str.split('')
-    return new Pitch(tune as Tune, parseInt(octave))
+    const match = PITCH_PATTERN.exec(str)
+    if (!match) {
+      throw new Error(`Invalid pitch: ${str}`)
+    }
+    let accidental: string = match[2]
+    if (accidental === '#') {
+      accidental = Accidental.Sharp
+    } else if (accidental === 'b') {
+      accidental = Accidental.Flat
+    }
+    return new Pitch(match[1] as Tune, parseInt(match[3]), accidental as Accidental)
   }
 
   protected getIndex(): number {

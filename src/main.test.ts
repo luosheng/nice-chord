@@ -19,6 +19,11 @@ test('pitch decomposition', () => {
   const pitch = Pitch.fromString('C4')
   expect(pitch.tune).toBe('C')
   expect(pitch.octave).toBe(4)
+
+  const pitchWithAccidental = Pitch.fromString('Cb4')
+  expect(pitchWithAccidental.tune).toBe('C')
+  expect(pitchWithAccidental.octave).toBe(4)
+  expect(pitchWithAccidental.accidental).toBe(Accidental.Flat)
 })
 
 test('pitch distance', () => {
