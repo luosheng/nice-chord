@@ -5,8 +5,9 @@ export enum Accidental {
   Sharp = '♯',
   Flat = '♭',
 }
+export type Interval = number
 
-const INTERVALS = {
+const INTERVALS: Record<Tune, Interval> = {
   'C': 0,
   'D': 2,
   'E': 4,
@@ -78,8 +79,12 @@ export class Pitch {
     return i + offset + 12 * this.octave
   }
 
-  intervalFrom(pitch: Pitch): number {
+  intervalFrom(pitch: Pitch): Interval {
     return this.getIndex() - pitch.getIndex()
+  }
+
+  addInterval(interval: Interval): Pitch {
+    return Pitch.fromIndex(this.getIndex() + interval)
   }
 
   get frequency(): number {

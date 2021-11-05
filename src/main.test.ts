@@ -30,6 +30,10 @@ test('pitch interval', () => {
   const pitch1 = Pitch.parse('A4')
   const pitch2 = Pitch.parse('C5')
   expect(pitch2.intervalFrom(pitch1)).toBe(3)
+
+  const pitch3 = Pitch.parse('C5')
+  expect(pitch3.addInterval(4).toString()).toBe('E5')
+  expect(pitch3.addInterval(7).toString()).toBe('G5')
 })
 
 test('pitch standard', () => {
