@@ -36,7 +36,7 @@ export class Pitch {
     return Pitch.standard
   }
 
-  static fromString(str: string): Pitch {
+  static parse(str: string): Pitch {
     const match = PITCH_PATTERN.exec(str)
     if (!match) {
       throw new Error(`Invalid pitch: ${str}`)

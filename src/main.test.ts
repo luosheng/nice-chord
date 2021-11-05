@@ -16,19 +16,19 @@ test('pitch creation with accidentail', () => {
 })
 
 test('pitch decomposition', () => {
-  const pitch = Pitch.fromString('C4')
+  const pitch = Pitch.parse('C4')
   expect(pitch.tune).toBe('C')
   expect(pitch.octave).toBe(4)
 
-  const pitchWithAccidental = Pitch.fromString('Cb4')
+  const pitchWithAccidental = Pitch.parse('Cb4')
   expect(pitchWithAccidental.tune).toBe('C')
   expect(pitchWithAccidental.octave).toBe(4)
   expect(pitchWithAccidental.accidental).toBe(Accidental.Flat)
 })
 
 test('pitch distance', () => {
-  const pitch1 = Pitch.fromString('A4')
-  const pitch2 = Pitch.fromString('C5')
+  const pitch1 = Pitch.parse('A4')
+  const pitch2 = Pitch.parse('C5')
   expect(pitch2.distanceFrom(pitch1)).toBe(3)
 })
 
@@ -38,7 +38,7 @@ test('pitch standard', () => {
 
 test('pitch frequency', () => {
   expect(Pitch.Standard.frequency).toBe(440)
-  expect(Pitch.fromString('C4').frequency).toBeCloseTo(261.6255653005986)
+  expect(Pitch.parse('C4').frequency).toBeCloseTo(261.6255653005986)
   expect(new Pitch('C', 4, Accidental.Sharp).frequency).toBeCloseTo(277.18263097687225)
-  expect(Pitch.fromString('C5').frequency).toBeCloseTo(523.2511306011972)
+  expect(Pitch.parse('C5').frequency).toBeCloseTo(523.2511306011972)
 })
