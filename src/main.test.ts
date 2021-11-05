@@ -1,4 +1,4 @@
-import { Accidental, Pitch } from './pitch'
+import { Accidental, Pitch } from './main'
 
 test('pitch creation', () => {
   const pitch = new Pitch('C', 4)

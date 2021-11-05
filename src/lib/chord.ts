@@ -1,3 +1,3 @@
-import { Pitch } from "./Pitch"
+import { Pitch } from "./pitch"
 
 export type ChordType = Pitch[]
