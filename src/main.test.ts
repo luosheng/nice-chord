@@ -26,10 +26,10 @@ test('pitch decomposition', () => {
   expect(pitchWithAccidental.accidental).toBe(Accidental.Flat)
 })
 
-test('pitch distance', () => {
+test('pitch interval', () => {
   const pitch1 = Pitch.parse('A4')
   const pitch2 = Pitch.parse('C5')
-  expect(pitch2.distanceFrom(pitch1)).toBe(3)
+  expect(pitch2.intervalFrom(pitch1)).toBe(3)
 })
 
 test('pitch standard', () => {

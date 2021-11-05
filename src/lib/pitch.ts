@@ -6,7 +6,7 @@ export enum Accidental {
   Flat = '♭',
 }
 
-const DISTANCE = {
+const INTERVALS = {
   'C': 0,
   'D': 2,
   'E': 4,
@@ -51,7 +51,7 @@ export class Pitch {
   }
 
   protected getIndex(): number {
-    const i = DISTANCE[this.tune]
+    const i = INTERVALS[this.tune]
     let offset: number
     switch (this.accidental) {
       case Accidental.Sharp:
@@ -67,12 +67,12 @@ export class Pitch {
     return i + offset + 12 * (this.octave - 1)
   }
 
-  distanceFrom(pitch: Pitch): number {
+  intervalFrom(pitch: Pitch): number {
     return this.getIndex() - pitch.getIndex()
   }
 
   get frequency(): number {
-    return STANDARD_FREQUENCY * Math.pow(2, this.distanceFrom(Pitch.Standard) / 12)
+    return STANDARD_FREQUENCY * Math.pow(2, this.intervalFrom(Pitch.Standard) / 12)
   }
 
   toString(): string {
