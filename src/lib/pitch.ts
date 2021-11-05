@@ -50,6 +50,17 @@ export class Pitch {
     return new Pitch(match[1] as Tune, parseInt(match[3]), accidental as Accidental)
   }
 
+  static fromIndex(index: number): Pitch {
+    const octave = Math.floor(index / 12)
+    const mod = index % 12
+    const intervalKeys = Object.keys(INTERVALS) as Tune[]
+    const tuneIndex = mod === 11 ? intervalKeys.length : intervalKeys.findIndex(key => INTERVALS[key] > mod)
+    const tune = intervalKeys[tuneIndex - 1]
+    const interval = INTERVALS[tune]
+    const accidental = interval === mod ? Accidental.None : Accidental.Sharp
+    return new Pitch(tune, octave, accidental)
+  }
+
   protected getIndex(): number {
     const i = INTERVALS[this.tune]
     let offset: number
@@ -64,7 +75,7 @@ export class Pitch {
         offset = 0
         break
     }
-    return i + offset + 12 * (this.octave - 1)
+    return i + offset + 12 * this.octave
   }
 
   intervalFrom(pitch: Pitch): number {
