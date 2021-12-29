@@ -43,6 +43,6 @@ test('pitch standard', () => {
 test('pitch frequency', () => {
   expect(Pitch.Standard.frequency).toBe(440)
   expect(Pitch.parse('C4').frequency).toBeCloseTo(261.6255653005986)
-  expect(new Pitch('C', 4, Accidental.Sharp).frequency).toBeCloseTo(277.18263097687225)
+  expect(Pitch.parse('C#4').frequency).toBeCloseTo(277.18263097687225)
   expect(Pitch.parse('C5').frequency).toBeCloseTo(523.2511306011972)
 })
